@@ -4,9 +4,9 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { EntrarComponent } from './entrar/entrar.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'entrar', pathMatch: 'full'},
-  {path: 'entrar', component: EntrarComponent},
-  {path: 'cadastrar', component: CadastrarComponent}
+  {path: '', redirectTo: 'entrar', pathMatch: 'full'}, /*quando o path for vazio ele vai redirecionar para a página entrar*/
+  {path: 'entrar', component: EntrarComponent}, /*quando o path for entrar ele vai para a página de login*/
+  {path: 'cadastrar', component: CadastrarComponent} /*quando o path for cadastrar ele vai pra página de cadastro*/
 ];
 
 @NgModule({

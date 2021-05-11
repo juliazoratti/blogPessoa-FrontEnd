@@ -23,7 +23,7 @@ export class PostagemService {
     return this.http.get<Postagem>(`http://localhost:8080/postagens/${id}`, this.token)
   }
 
-  postPostagem(postagem: Postagem): Observable<Postagem>{
+  postPostagem(postagem: Postagem) : Observable<Postagem>{
     return this.http.post<Postagem>('http://localhost:8080/postagens', postagem, this.token)
   }
 
@@ -34,4 +34,5 @@ export class PostagemService {
   deletePostagem(id: number){
     return this.http.delete(`http://localhost:8080/postagens/${id}`, this.token)
   }
+
 }

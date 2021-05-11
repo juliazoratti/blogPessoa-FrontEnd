@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { environment } from './../../../environments/environment.prod';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/model/User';
-import { AuthService } from 'src/app/service/auth.service';
-import { environment } from 'src/environments/environment.prod';
+import { AuthService } from './../../service/auth.service';
+import { User } from './../../model/User';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user-edit',
@@ -22,9 +22,10 @@ export class UserEditComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(){
-    window.scroll(0,0)
-    if(environment.token == ''){
+  ngOnInit() {
+    window.scroll(0, 0)
+
+    if (environment.token == '') {
       this.router.navigate(['/entrar'])
     }
 
@@ -36,31 +37,31 @@ export class UserEditComponent implements OnInit {
     this.confirmarSenha = event.target.value
   }
 
-  tipoUser(event: any){
+  tipoUser(event: any) {
     this.tipoUsuario = event.target.value
   }
 
-  atualizar(){
+  atualizar() {
     this.user.tipo = this.tipoUsuario
 
-    if(this.user.senha != this.confirmarSenha){
+    if (this.user.senha != this.confirmarSenha) {
       alert('A senhas estão incorretas.')
     } else {
       this.authService.cadastrar(this.user).subscribe((resp: User) => {
         this.user = resp
-        this.router.navigate(['/entrar'])
+        this.router.navigate(['/inicio'])
         alert('Usuário atualizado com sucesso, faça o login novamente.')
-        environment.token =''
-        environment.nome =''
-        environment.foto=''
-        environment.id =0
-        
+        environment.token = ''
+        environment.nome = ''
+        environment.foto = ''
+        environment.id = 0
+
         this.router.navigate(['/entrar'])
       })
     }
   }
 
-  findByIdUser(id: number){
+  findByIdUser(id: number) {
     this.authService.getByIdUser(id).subscribe((resp: User) => {
       this.user = resp
     })
